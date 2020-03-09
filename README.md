@@ -2,9 +2,7 @@
 ![BUGLOGO](./central-de-erros/src/images/buglogo.png)
 
 # Central de Erros
-Projeto Final Codenation - Acelera Dev React ( Central de Erros ) 
-
-
+> Projeto Final Codenation - Acelera Dev React ( Central de Erros ) 
 
 [![NPM Version][npm-badge]][npm-url]
 
@@ -34,6 +32,9 @@ Projeto Final Codenation - Acelera Dev React ( Central de Erros )
   - Redux
   ```bash
   $ yarn add react-redux redux
+  ```
+  ```
+  $ yarn add styled-components  
   ```
 
 

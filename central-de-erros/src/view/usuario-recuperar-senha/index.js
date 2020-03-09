@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import imagelogo from '../../images/buglogo.png';
 import firebase from '../../config/firebase';
 import 'firebase/auth';
 import './style.css';
@@ -18,16 +17,14 @@ function UsuarioRecuperarSenha() {
   };
 
   return (
-    <>
-      <div className="form-cadastro" >
-        <form className="text-center form-login mx-auto mt-5">
-          <h3 className="mb-3 font-weight-bold">Recuperar Senha</h3>
-          <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control my-2" placeholder="Email" />
+    <div className="form-cadastro" >
+      <form >
+        <h3><i class="fa fa-envelope"></i> Recuperar Senha</h3>
+        <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" placeholder="Email" />
 
-          <button onClick={recuperarSenha} type="button" className="btn btn-lg btn-block btn-enviar">Recuperar Senha</button>
-        </form>
-      </div>
-    </>
+        <button onClick={recuperarSenha} type="button" className="btn-enviar">Recuperar Senha</button>
+      </form>
+    </div>
   );
 }
 

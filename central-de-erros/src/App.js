@@ -1,26 +1,21 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { ToastContainer } from 'react-toastify';
+import Routes from './routes';
+import store from '../src/store';
+import { Provider } from 'react-redux';
+
+import GlobalStyle from './styles/global';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-/* Páginas */
-import Login from './view/login';
-import NovoUsuario from './view/usuario-novo';
-import UsuarioRecuperarSenha from './view/usuario-recuperar-senha';
-import Home from './view/home';
-
 
 function App() {
   return (
-    <>
-      <ToastContainer />
-      <Router>
-        <Route exact path='/' component={Login} />
-        <Route exact path='/novousuario' component={NovoUsuario} />
-        <Route exact path='/usuariorecuperarsenha' component={UsuarioRecuperarSenha} />
-        <Route exact path='/home' component={Home} />
-      </Router>
-    </>
+    <Provider store={store}>
+      <Fragment>
+        <ToastContainer />
+        <GlobalStyle />
+        <Routes />
+      </Fragment>
+    </Provider>
   );
 }
 

@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
-import imagelogo from '../../images/buglogo.png'
+import { Link, Redirect } from 'react-router-dom';
+
+/* Importação do Estilo feito com Styled Components */
+import { Container, LogoContainer, LoginForm, InputContainer, ButtonForm, FooterLogin } from './styles';
+import { useSelector, useDispatch } from 'react-redux';
+
+import imagelogo from '../../images/buglogo.png';
+
 import firebase from '../../config/firebase';
 import 'firebase/auth';
-import './style.css';
-
 
 function Login() {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
+
+  const dispatch = useDispatch();
 
   function logar() {
     if (!email) {
@@ -18,7 +24,12 @@ function Login() {
       toast.error('Senha não informada !');
     } else {
       firebase.auth().signInWithEmailAndPassword(email, senha).then(resultado => {
+        // Recebe os Dados do usuário autenticado
+        const usuario = firebase.auth().currentUser;
+        const idusuario = usuario.uid;
         toast.success('Login efetuado com sucesso !');
+        // Grava as alterações no store
+        dispatch({ type: 'LOG_IN', usuarioEmail: email, usuarioHash: idusuario });
       }).catch(erro => {
         toast.error('Email e/ou senha inválidos !');
       });
@@ -26,39 +37,37 @@ function Login() {
   }
 
   return (
-    <div className="login-content">
-      <div className="logo-content">
-        <img className="logo" src={imagelogo} alt="logotipo" />
-      </div>
-
-      <form className="form-signin mx-auto">
-        <div className="text-center mb-4">
-          <h1 className="h3 mb-3 font-weight-normal text-white font-weight-bold"><i class="fa fa-lock"></i> Login</h1>
-          <h5 className="text-white">Bem vindo à <strong className="strbemvindo">Central de Erros !</strong></h5>
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+    <Container>
+      {
+        useSelector(state => state.usuarioLogado) > 0 ? <Redirect to='/home' /> : null
+      }
+      <LogoContainer>
+        <img src={imagelogo} alt="logotipo" />
+      </LogoContainer>
+      <LoginForm>
+        <h1><i className="fa fa-lock"></i> Faça Login</h1>
+        <h5>Bem vindo à <strong>Central de Erros !</strong></h5>
+        <hr />
+        <InputContainer>
+          <div>
+            <span><i className="fa fa-envelope"></i></span>
           </div>
-          <input onChange={(e) => setEmail(e.target.value)} type="email" id="inputEmail" className="form-control" placeholder="Email" />
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+          <input onChange={(e) => setEmail(e.target.value)} type="email" id="inputEmail" placeholder="Email" />
+        </InputContainer>
+        <InputContainer>
+          <div>
+            <span><i className="fa fa-key"></i></span>
           </div>
-          <input onChange={(s) => setSenha(s.target.value)} type="password" id="inputPassword" className="form-control" placeholder="Senha" />
-        </div>
+          <input onChange={(s) => setSenha(s.target.value)} type="password" id="inputPassword" placeholder="Senha" />
+        </InputContainer>
+        <ButtonForm onClick={logar} type="button">Logar</ButtonForm>
+        <Link to='usuariorecuperarsenha'>Esqueceu a senha ?</Link>
+      </LoginForm>
 
-        <button onClick={logar} className="btn-login btn btn-lg btn-block" type="button">Logar</button>
-      </form>
-
-      <div className="opcoes-login">
-        <Link to='usuariorecuperarsenha' className="mx-2">Esqueceu sua senha ?</Link>
-        <Link to='novousuario' className="mx-2">Quero Cadastrar</Link>
-      </div>
-    </div >
+      <FooterLogin>
+        <Link to='novousuario'>Quero Cadastrar</Link>
+      </FooterLogin>
+    </Container>
   );
 }
 

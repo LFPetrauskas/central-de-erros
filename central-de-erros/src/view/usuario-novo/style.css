@@ -15,7 +15,7 @@ body html{
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #071e2d; /* For browsers that do not support gradients */
+  background-color: #071e2d; 
   background-image: linear-gradient(to bottom right, #525557aa,#a7acaf); 
   font-family: 'Roboto';
 }
