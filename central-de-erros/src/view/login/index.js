@@ -44,7 +44,7 @@ function Login() {
       <LogoContainer>
         <img src={imagelogo} alt="logotipo" />
       </LogoContainer>
-      <LoginForm>
+      <LoginForm onSubmit={logar}>
         <h1><i className="fa fa-lock"></i> Faça Login</h1>
         <h5>Bem vindo à <strong>Central de Erros !</strong></h5>
         <hr />
@@ -60,7 +60,7 @@ function Login() {
           </div>
           <input onChange={(s) => setSenha(s.target.value)} type="password" id="inputPassword" placeholder="Senha" />
         </InputContainer>
-        <ButtonForm onClick={logar} type="button">Logar</ButtonForm>
+        <ButtonForm onClick={logar} type="submit">Logar</ButtonForm>
         <Link to='usuariorecuperarsenha'>Esqueceu a senha ?</Link>
       </LoginForm>
 

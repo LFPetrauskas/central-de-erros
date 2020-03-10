@@ -4,7 +4,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #dd9d3c ;
+  background-color: #dd9d3c;
+  width: 100vw;
 `;
 
 export const LogoContainer = styled.div`
