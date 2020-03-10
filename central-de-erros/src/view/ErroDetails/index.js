@@ -4,10 +4,10 @@ import {
   DivCard,
   MainComponent,
   SectionErro,
-  Rodape
+  Button
 } from "./style";
-import NavBar from "../../components/navbar";
-import "./style";
+import { useHistory } from "react-router";
+import { Level } from "../login/styles";
 
 const erro = {
   servidor: "127.0.0.1",
@@ -15,12 +15,18 @@ const erro = {
   titulo: "acceleration.Service.AddCandidate: <forbidden>",
   detalhes:
     'File "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\nFile "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\nFile "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\n',
-  level: "error",
+  level: "warning",
   eventos: "1000",
   usuario: "<token-usuario>"
 };
 
 function ErroDetails() {
+  const history = useHistory(); //retirar caso não for usar routes
+
+  function voltar() {
+    history.goBack();
+  }
+
   return (
     <div
       style={{
@@ -30,10 +36,11 @@ function ErroDetails() {
         width: "100%"
       }}
     >
-      <button>Voltar</button>
+      <Button onClick={voltar}>Voltar</Button>
       <DivCard>
         <h1>
-          Erro no {erro.servidor} em {erro.data}
+          Erro no <strong>{erro.servidor}</strong> em{" "}
+          <strong>{erro.data}</strong>
         </h1>
         <hr />
         <SectionErro>
@@ -44,7 +51,9 @@ function ErroDetails() {
             <p>{erro.detalhes}</p>
           </MainComponent>
           <AsideComponent>
-            <p>{erro.level}</p>
+            <Level>
+              <span className={erro.level}>{erro.level}</span>
+            </Level>
             <h3>Eventos</h3>
             <p>{erro.eventos}</p>
             <h3>Coletado por</h3>
@@ -52,7 +61,6 @@ function ErroDetails() {
           </AsideComponent>
         </SectionErro>
       </DivCard>
-      <Rodape>Central de Erros</Rodape>
     </div>
   );
 }

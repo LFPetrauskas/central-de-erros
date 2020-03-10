@@ -3,18 +3,21 @@ import styled from "styled-components";
 export const DivCard = styled.div`
   align-self: center;
   background-color: #061e2d;
-  border-radius: 3% 3% 0 0;
+  border-radius: 3%;
   display: flex;
   flex-direction: column;
   font-size: 0.75rem;
   color: #ffffff;
   font-family: "Roboto";
   padding: 10px;
+  strong {
+    color: #cd683e;
+  }
   hr {
     width: 100%;
   }
-  h1 {
-    color: #cd683e;
+  h2, h3{
+    color: #dd9d3c;
   }
   width: 90%;
 `;
@@ -23,8 +26,6 @@ export const AsideComponent = styled.aside`
   width: fit-content;
   word-break: break-all;
 `;
-
-export const Button = styled.button``;
 
 export const MainComponent = styled.main`
   width: 100%;
@@ -41,15 +42,21 @@ export const SectionErro = styled.section`
   }
 `;
 
-export const Rodape = styled.footer`
-  background-color: #3d464b;
-  box-sizing: border-box;
-  justify-content: center;
-  border-radius: 0px 0px 9px 9px;
-  color: #fff;
-  font-family: "Roboto";
-  width: inherit;
-  display: flex;
-  width: 96%;
-  padding: 5px;
+
+export const Button = styled.button`
+  background-color: #cd683e;
+  color: #ffffff;
+  border-radius: 4px;
+  border: 0;
+  width: 100%;
+  padding: 12px 12px 12px 12px;
+  margin-bottom: 5px; 
+  font-size: 20px;
+  transition: background-color 0.20s ease; 
+  font-weight: 700;
+  
+   &:hover {
+    background-color: #c23439;
+    color: #ffffff;
+    }
 `;
