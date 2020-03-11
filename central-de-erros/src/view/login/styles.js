@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 /* Tag onde se concentram todos os outros elementos é a tag agrupadora e 
-   principal */
+principal */
 export const Container = styled.div`
+  box-sizing: border-box;
   flex: 1;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100vw;
   align-items: center;
   background-image: linear-gradient(to bottom right, #525557aa, #a7acaf);
 `;
@@ -23,9 +25,14 @@ export const LogoContainer = styled.div`
   outline: 0;
   box-sizing: border-box;
 
+  order: -1;
   img {
     height: 70px;
     width: 70px;
+    @media (max-width: 425px) {
+      height: 45px;
+      width: 45px;
+    }
   }
 `;
 
@@ -34,11 +41,16 @@ export const LoginForm = styled.form`
   border-style: solid;
   border-width: 0px;
   border-radius: 9px 9px 0px 0px;
-  min-width: 350px;
   height: 350px;
   padding: 40px 10px 40px 10px;
   background-color: #061e2d;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  @media (max-width: 350px) {
+    width: 90%;
+  }
+  @media (min-width: 350px) {
+    min-width: 350px;
+  }
 
   h1 {
     color: #fff;
@@ -102,11 +114,17 @@ export const FooterLogin = styled.div`
   display: flex;
   justify-content: flex-end;
   font-size: 14px;
-  margin: 0px;
-  padding: 15px 10px 0px 0px;
   background-color: #3d464b;
-  min-width: 350px;
-  height: 50px;
+  margin: 0px;
+  @media (max-width: 350px) {
+    width: 90%;
+    padding: 10px;
+  }
+  @media (min-width: 350px) {
+    padding: 15px 10px 0px 0px;
+    min-width: 350px;
+    height: 50px;
+  }
   border-radius: 0px 0px 9px 9px;
 
   a {
@@ -136,26 +154,6 @@ export const ButtonForm = styled.button`
   &:hover {
     background-color: #c23439;
     color: #ffffff;
-  }
-`;
-
-export const Level = styled.p`
-  .error,
-  .warning,
-  .debug {
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  .error {
-    background-color: #ff0000aa;
-  }
-  .warning {
-    background-color: #ff9900aa;
-  }
-  .debug {
-    background-color: #007700aa;
   }
 `;
 /*  */

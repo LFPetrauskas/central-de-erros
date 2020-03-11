@@ -4,10 +4,13 @@ import {
   DivCard,
   MainComponent,
   SectionErro,
+  Level,
   Button
 } from "./style";
 import { useHistory } from "react-router";
-import { Level } from "../login/styles";
+
+import imagelogo from "../../images/buglogo.png";
+import { LogoContainer } from "../login/styles";
 
 const erro = {
   servidor: "127.0.0.1",
@@ -37,6 +40,9 @@ function ErroDetails() {
       }}
     >
       <Button onClick={voltar}>Voltar</Button>
+      <LogoContainer>
+        <img src={imagelogo} alt="logotipo" />
+      </LogoContainer>
       <DivCard>
         <h1>
           Erro no <strong>{erro.servidor}</strong> em{" "}

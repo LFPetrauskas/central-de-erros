@@ -7,17 +7,22 @@ export default createGlobalStyle`
    @media(max-width: 400px) {
 
      body {
-      background: #353940;
+      /* background: #353940; */
+      background-image: linear-gradient(to bottom right, #525557aa, #a7acaf);
        box-sizing: border-box;
        display: flex;
-       height: 100%;
+       height: 100vh;
        margin: 0px;
        padding: 0px;
+       color: #fff;
+       font-family: 'Roboto', sans-serif;
+       text-rendering: optimizeLegibility !important;
+       -webkit-font-smoothing: antialiased !important;
        width: 100%;
      }  
    }
 
-   @media(min-width: 401px) {
+   @media(min-width: 350px) {
 
      * {
        padding: 0;
