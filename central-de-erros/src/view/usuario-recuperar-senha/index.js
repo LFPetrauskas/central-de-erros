@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import firebase from "../../config/firebase";
 import "firebase/auth";
-import { DivCard, DivFundo, Form, Button } from "./style";
+import { Button, Input, Form, Card, Section, Footer } from "./style";
 
 function UsuarioRecuperarSenha() {
   const [email, setEmail] = useState();
@@ -22,25 +23,27 @@ function UsuarioRecuperarSenha() {
   }
 
   return (
-    <DivFundo>
-      <DivCard>
-        <Form>
-          <h2>
-            <i className="fa fa-envelope"></i> Recuperar Senha
-          </h2>
-          <input
+    <Section>
+      <Card>
+        <h2>
+          <i className="fa fa-envelope"></i>{" "}<strong>Recuperar Senha</strong>
+        </h2>
+        <Form onSubmit={recuperarSenha}>
+          <Input
             onChange={e => setEmail(e.target.value)}
             type="email"
-            className="form-control"
             placeholder="Email"
           />
 
-          <Button onClick={recuperarSenha} type="button" className="btn-enviar">
+          <Button onClick={recuperarSenha} type="submit">
             Recuperar Senha
           </Button>
         </Form>
-      </DivCard>
-    </DivFundo>
+      </Card>
+      <Footer>
+        <Link to="/">Início</Link>
+      </Footer>
+    </Section>
   );
 }
 
