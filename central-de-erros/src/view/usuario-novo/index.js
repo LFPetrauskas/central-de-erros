@@ -9,7 +9,7 @@ function NovoUsuario() {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
 
-  function Cadastrar() {
+  function cadastrar() {
     if (!email) {
       toast.error("Email deve ser informado !");
     } else if (!senha) {
@@ -56,7 +56,7 @@ function NovoUsuario() {
           <i className="fa fa-user-plus"></i> Cadastro de Usuários
         </h1>
         <hr />
-        <Form>
+        <Form onSubmit={cadastrar}>
           <Icone>
             <i className="fa fa-envelope"></i>
             <Input
