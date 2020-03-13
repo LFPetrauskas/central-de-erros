@@ -9,7 +9,6 @@ export const Button = styled.button`
   }
   border: 0px;
   padding: 15px;
-  /* width: 80%; */
   font-size: 1.25rem;
   width: 100%;
   @media (max-width: 425px) {
@@ -58,6 +57,7 @@ export const Card = styled.div`
 
 export const Section = styled.section`
   box-sizing: border-box;
+  background-image: linear-gradient(to bottom right,#525557aa,#a7acaf);
   display: flex;
   flex-direction: column;
   align-items: center;

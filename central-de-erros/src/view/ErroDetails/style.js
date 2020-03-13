@@ -122,3 +122,12 @@ export const Level = styled.p`
     background-color: #007700aa;
   }
 `;
+
+export const Fundo = styled.div`
+  background-image: linear-gradient(to bottom right, #525557aa, #a7acaf);
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

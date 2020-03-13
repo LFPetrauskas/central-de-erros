@@ -5,7 +5,8 @@ import {
   MainComponent,
   SectionErro,
   Level,
-  Button
+  Button,
+  Fundo
 } from "./style";
 import { useHistory } from "react-router";
 
@@ -31,43 +32,45 @@ function ErroDetails() {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%"
-      }}
-    >
-      <Button onClick={voltar}>Voltar</Button>
-      <LogoContainer>
-        <img src={imagelogo} alt="logotipo" />
-      </LogoContainer>
-      <DivCard>
-        <h1>
-          Erro no <strong>{erro.servidor}</strong> em{" "}
-          <strong>{erro.data}</strong>
-        </h1>
-        <hr />
-        <SectionErro>
-          <MainComponent>
-            <h2>Título</h2>
-            <p>{erro.titulo}</p>
-            <h2>Detalhes</h2>
-            <p>{erro.detalhes}</p>
-          </MainComponent>
-          <AsideComponent>
-            <Level>
-              <span className={erro.level}>{erro.level}</span>
-            </Level>
-            <h3>Eventos</h3>
-            <p>{erro.eventos}</p>
-            <h3>Coletado por</h3>
-            <p>{erro.usuario}</p>
-          </AsideComponent>
-        </SectionErro>
-      </DivCard>
-    </div>
+    <Fundo>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%"
+        }}
+      >
+        <Button onClick={voltar}>Voltar</Button>
+        <LogoContainer>
+          <img src={imagelogo} alt="logotipo" />
+        </LogoContainer>
+        <DivCard>
+          <h1>
+            Erro no <strong>{erro.servidor}</strong> em{" "}
+            <strong>{erro.data}</strong>
+          </h1>
+          <hr />
+          <SectionErro>
+            <MainComponent>
+              <h2>Título</h2>
+              <p>{erro.titulo}</p>
+              <h2>Detalhes</h2>
+              <p>{erro.detalhes}</p>
+            </MainComponent>
+            <AsideComponent>
+              <Level>
+                <span className={erro.level}>{erro.level}</span>
+              </Level>
+              <h3>Eventos</h3>
+              <p>{erro.eventos}</p>
+              <h3>Coletado por</h3>
+              <p>{erro.usuario}</p>
+            </AsideComponent>
+          </SectionErro>
+        </DivCard>
+      </div>
+    </Fundo>
   );
 }
 
