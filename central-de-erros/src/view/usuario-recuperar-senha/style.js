@@ -23,8 +23,6 @@ export const Input = styled.input`
   padding: 10px;
   margin: 1vw 0vw 1vw 0vw;
   width: 100%;
-  border: 0px;
-  border-radius: 0px 3px 3px 0px;
 `;
 
 export const Form = styled.form`
@@ -44,10 +42,6 @@ export const Card = styled.div`
   strong {
     color: #dd9d3c;
   }
-  hr {
-    width: 100%;
-    margin: 10px 0px 10px 0px;
-  }
   max-width: 600px;
   border-radius: 2vw 2vw 0vw 0vw;
   @media (min-width: 426px) {
@@ -63,15 +57,14 @@ export const Card = styled.div`
 
 export const Section = styled.section`
   box-sizing: border-box;
-  background-image: linear-gradient(to bottom right, #525557aa, #a7acaf);
+  background-image: linear-gradient(to bottom right,#525557aa,#a7acaf);
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   @media (min-width: 426px) {
     justify-content: flex-start;
     padding: 5vw;
-    height: 100vh;
+    height: 100%;
     width: 100%;
   }
   @media (max-width: 425px) {
@@ -99,16 +92,5 @@ export const Footer = styled.footer`
   max-width: 600px;
   @media (max-width: 425px) {
     width: 90vw;
-  }
-`;
-
-export const Icone = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  i {
-    padding: 10px;
-    border-radius: 3px 0px 0px 3px;
-    background-color: #dd9d3c;
   }
 `;

@@ -1,30 +1,49 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import firebase from '../../config/firebase';
-import 'firebase/auth';
-import './style.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import firebase from "../../config/firebase";
+import "firebase/auth";
+import { Button, Input, Form, Card, Section, Footer } from "./style";
 
 function UsuarioRecuperarSenha() {
-
   const [email, setEmail] = useState();
 
   function recuperarSenha() {
-    firebase.auth().sendPasswordResetEmail(email).then(resultado => {
-      toast.success(`Enviamos um link para seu email ${email} para que você redefina sua senha !`);
-    }).catch(erro => {
-      toast.error(`Erro`);
-    });
-  };
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(resultado => {
+        toast.success(
+          `Enviamos um link para seu email ${email} para que você redefina sua senha !`
+        );
+      })
+      .catch(erro => {
+        toast.error(`Erro`);
+      });
+  }
 
   return (
-    <div className="form-cadastro" >
-      <form >
-        <h3><i class="fa fa-envelope"></i> Recuperar Senha</h3>
-        <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" placeholder="Email" />
+    <Section>
+      <Card>
+        <h2>
+          <i className="fa fa-envelope"></i>{" "}<strong>Recuperar Senha</strong>
+        </h2>
+        <Form onSubmit={recuperarSenha}>
+          <Input
+            onChange={e => setEmail(e.target.value)}
+            type="email"
+            placeholder="Email"
+          />
 
-        <button onClick={recuperarSenha} type="button" className="btn-enviar">Recuperar Senha</button>
-      </form>
-    </div>
+          <Button onClick={recuperarSenha} type="submit">
+            Recuperar Senha
+          </Button>
+        </Form>
+      </Card>
+      <Footer>
+        <Link to="/">Início</Link>
+      </Footer>
+    </Section>
   );
 }
 

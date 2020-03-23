@@ -1,15 +1,17 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 /* Tag onde se concentram todos os outros elementos é a tag agrupadora e 
-   principal */
+principal */
 export const Container = styled.div`
+  box-sizing: border-box;
   flex: 1;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100vw;
   align-items: center;
-  background-image: linear-gradient(to bottom right, #525557aa,#a7acaf); 
+  background-image: linear-gradient(to bottom right, #525557aa, #a7acaf);
 `;
 
 /* Estiliza a Div do Logotipo */
@@ -21,11 +23,16 @@ export const LogoContainer = styled.div`
   padding: 0;
   margin: 10px;
   outline: 0;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 
+  order: -1;
   img {
     height: 70px;
     width: 70px;
+    @media (max-width: 425px) {
+      height: 45px;
+      width: 45px;
+    }
   }
 `;
 
@@ -34,17 +41,22 @@ export const LoginForm = styled.form`
   border-style: solid;
   border-width: 0px;
   border-radius: 9px 9px 0px 0px;
-  min-width: 350px;
   height: 350px;
   padding: 40px 10px 40px 10px;
   background-color: #061e2d;
-  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  @media (max-width: 350px) {
+    width: 90%;
+  }
+  @media (min-width: 350px) {
+    min-width: 350px;
+  }
 
   h1 {
-   color: #fff;
-   font-size: 32px;
-   padding: 0px 0px 10px 0px;
-   text-align: center;
+    color: #fff;
+    font-size: 32px;
+    padding: 0px 0px 10px 0px;
+    text-align: center;
   }
 
   h5 {
@@ -56,7 +68,7 @@ export const LoginForm = styled.form`
   strong {
     color: #cd683e;
   }
-  
+
   hr {
     border-color: #a7acaf;
     margin: 0px 0px 15px 0px;
@@ -67,13 +79,12 @@ export const LoginForm = styled.form`
     text-decoration: none;
     color: #ffffff;
     padding-top: 10px;
-    transition: .3s ease-in;
-    
+    transition: 0.3s ease-in;
+
     &:hover {
       color: #dd9d3c;
     }
   }
-
 `;
 
 /* Estiliza a Div do Logotipo */
@@ -89,7 +100,7 @@ export const InputContainer = styled.div`
     border-style: none;
     width: 40px;
   }
-  
+
   input {
     width: 100%;
     padding: 12px 10px 12px 10px;
@@ -103,25 +114,29 @@ export const FooterLogin = styled.div`
   display: flex;
   justify-content: flex-end;
   font-size: 14px;
-  margin: 0px;
-  padding: 15px 10px 0px 0px;
   background-color: #3d464b;
-  min-width: 350px;
-  height: 50px;
+  margin: 0px;
+  @media (max-width: 350px) {
+    width: 90%;
+    padding: 10px;
+  }
+  @media (min-width: 350px) {
+    padding: 15px 10px 0px 0px;
+    min-width: 350px;
+    height: 50px;
+  }
   border-radius: 0px 0px 9px 9px;
-  
+
   a {
     text-decoration: none;
     color: #ffffff;
-    padding: 0px 0px 0px 10px; 
-    transition: .3s ease-in;
-    
+    padding: 0px 0px 0px 10px;
+    transition: 0.3s ease-in;
+
     &:hover {
       color: #dd9d3c;
     }
   }
-
-   
 `;
 
 export const ButtonForm = styled.button`
@@ -131,16 +146,15 @@ export const ButtonForm = styled.button`
   border: 0;
   width: 100%;
   padding: 12px 12px 12px 12px;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
   font-size: 20px;
-  transition: background-color 0.20s ease; 
+  transition: background-color 0.2s ease;
   font-weight: 700;
-  
-   &:hover {
+
+  &:hover {
     background-color: #c23439;
     color: #ffffff;
-    }
+  }
 `;
 /*  */
 /*  */
-
