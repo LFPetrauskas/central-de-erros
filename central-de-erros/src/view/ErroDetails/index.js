@@ -8,24 +8,30 @@ import {
   Button,
   Fundo
 } from "./style";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 import imagelogo from "../../images/buglogo.png";
 import { LogoContainer } from "../login/styles";
 
-const erro = {
-  servidor: "127.0.0.1",
-  data: "24/05/2019 10:15",
-  titulo: "acceleration.Service.AddCandidate: <forbidden>",
-  detalhes:
-    'File "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\nFile "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\nFile "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\n',
-  level: "warning",
-  eventos: "1000",
-  usuario: "<token-usuario>"
-};
+// const erro = {
+//   servidor: "127.0.0.1",
+//   data: "24/05/2019 10:15",
+//   titulo: "acceleration.Service.AddCandidate: <forbidden>",
+//   detalhes:
+//     'File "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\nFile "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\nFile "/go/pkg/mod/github/sirupsen/logrus@v1.1.0/logger.go" line 228, in (*Logger).Error\n',
+//   level: "warning",
+//   eventos: "1000",
+//   usuario: "<token-usuario>"
+// };
 
 function ErroDetails() {
   const history = useHistory(); //retirar caso não for usar routes
+  const  {state} = useLocation();
+  const { erro } = state;
+
+  if (!erro) {
+    history.push("/");
+  }
 
   function voltar() {
     history.goBack();

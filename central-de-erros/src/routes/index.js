@@ -12,11 +12,11 @@ import ErroDetails from '../view/ErroDetails';
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path='/detalhes' component={ErroDetails} />
       <Route exact path='/' component={Login} />
+      <Route exact path='/home' component={Home} />
       <Route exact path='/novousuario' component={NovoUsuario} />
       <Route exact path='/usuariorecuperarsenha' component={UsuarioRecuperarSenha} />
-      <Route exact path='/home' component={Home} />
+      <Route exact path='/erro' component={ErroDetails} />
     </Switch>
   </BrowserRouter>
 );

@@ -60,11 +60,7 @@ function Login() {
       <LogoContainer>
         <img src={imagelogo} alt="logotipo" />
       </LogoContainer>
-<<<<<<< HEAD
       <LoginForm onSubmit={ e => logar(e)}>
-=======
-      <LoginForm onSubmit={logar}>
->>>>>>> c2ea1924d8fa947f525611859154a03842f179cd
         <h1>
           <i className="fa fa-lock"></i> Faça Login
         </h1>
@@ -98,11 +94,7 @@ function Login() {
             placeholder="Senha"
           />
         </InputContainer>
-<<<<<<< HEAD
         <ButtonForm onClick={(e) => logar(e)} type="submit">
-=======
-        <ButtonForm onClick={logar} type="submit">
->>>>>>> c2ea1924d8fa947f525611859154a03842f179cd
           Logar
         </ButtonForm>
         <Link to="usuariorecuperarsenha">Esqueceu a senha ?</Link>
