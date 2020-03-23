@@ -4,17 +4,25 @@ const INITIAL_STATE = {
   usuarioEmail: '',
   usuarioLogado: 0,
   usuarioHash: '',
+  erros: [{
+    level: "teste",
+    descricao: "teste",
+    eventos: "teste"
+  }],
+  erroSelecionado: null
 };
 
-function usuarioReducer(state = INITIAL_STATE, action) {
+function store(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'LOG_IN':
       return { ...state, usuarioLogado: 1, usuarioEmail: action.usuarioEmail, usuarioHash: action.usuarioHash }
     case 'LOG_OUT':
       return { ...state, usuarioLogado: 0, usuarioEmail: null, usuarioHash: null }
+    case 'SELECT_ERROR':
+      return {...state, erroSelecionado: action.payload };
     default:
       return state;
   }
 }
 
-export default usuarioReducer;
+export default store;

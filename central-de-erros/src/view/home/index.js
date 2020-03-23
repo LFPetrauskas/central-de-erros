@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import './style.css';
-import { Link } from 'react-router-dom';
-import NavBar from '../../components/navbar/';
+import React from "react";
+import "./style.css";
+import NavBar from "../../components/navbar/";
+import Dashboard from "../../components/Dashboard";
+import { useSelector } from "react-redux";
 
 function Home() {
+  const erroSelecionado = useSelector(state => state.erroSelecionado);
   return (
-    <NavBar />
-  )
+    <>
+      <NavBar />
+      <Dashboard />
+    </>
+  );
 }
 
 export default Home;
