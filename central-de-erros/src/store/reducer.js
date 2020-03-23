@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   usuarioHash: "",
   erros: [
     {
-      servidor: "127.0.0.1",
+      servidor: "dev",
+      ip: "127.0.0.1",
       data: "24/05/2019 10:15",
       titulo: "acceleration.Service.AddCandidate: <forbidden>",
       detalhes:
