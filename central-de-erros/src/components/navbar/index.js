@@ -30,19 +30,18 @@ function NavBar() {
   const usuarioEmail = useSelector(state => state.usuarioEmail);
   const usuarioHash = useSelector(state => state.usuarioHash);
 
-  if (usuarioLogado === 0) return <Redirect to="/" />;
+  // if (usuarioLogado === 0) return <Redirect to="/" />;
   return (
     <Container>
       <ImgDataUserContainer>
         <LogoContainer>
-          <img src={imagelogo} alt="Logotipo" />
+          <Link to="/home"><img src={imagelogo} alt="Logotipo" /></Link>
         </LogoContainer>
         <DataUserContainer>
-          <h4>
-            Bem vindo <strong>{usuarioEmail}</strong>.
+          <h4><span>Bem vindo</span> <strong>{usuarioEmail}</strong>.
           </h4>
           <h5>
-            Seu token é : <strong>{usuarioHash}</strong>
+            <span>Seu token é :</span> <strong className="token">{usuarioHash}</strong>
           </h5>
         </DataUserContainer>
       </ImgDataUserContainer>

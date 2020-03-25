@@ -2,6 +2,8 @@ import React from "react";
 import ErrorTable from "../ErrorTable";
 import { useDispatch } from "react-redux";
 
+import { Select, SectionSelect, Input, Button, DivButton, DivMostrarArquivados } from "./style";
+
 function Dashboard() {
   const [texto, setTexto] = React.useState("");
   const [filtro, setFiltro] = React.useState("");
@@ -15,16 +17,12 @@ function Dashboard() {
     dispatch({ type: "ORDER_BY", payload: value });
   }
 
-  function handleChangeBusca(value, type) {
-    if (type === "select") {
-      setFiltro(value);
-    } else {
-      setTexto(value);
-    }
-    dispatch({
-      type: "BUSCA_POR",
-      payload: { filtro, texto }
-    });
+  function handleKeyPress(event) {
+    if (event.key === "Enter")
+      dispatch({
+        type: "BUSCA_POR",
+        payload: { filtro, texto }
+      });
   }
 
   function alternaExibicaoArquivados() {
@@ -43,38 +41,49 @@ function Dashboard() {
 
   return (
     <div>
-      <section>
-        <select onChange={e => handleChangeServidor(e.target.value)}>
+      <SectionSelect>
+        <Select onChange={e => handleChangeServidor(e.target.value)}>
           <option defaultValue value="">
             Todos
           </option>
           <option value="prd">Produção</option>
           <option value="hml">Homologação</option>
           <option value="dev">Desenvolvimento</option>
-        </select>
-        <select onChange={e => handleChangeOrdem(e.target.value)}>
+        </Select>
+        <Select onChange={e => handleChangeOrdem(e.target.value)}>
           <option value="">Ordenar por</option>
           <option value="level">Level</option>
           <option value="eventos">Frequência</option>
-        </select>
-        <select onChange={e => handleChangeBusca(e.target.value, "select")}>
+        </Select>
+        <Select onChange={e => setFiltro(e.target.value)}>
           <option defaultValue value="">
             Buscar por
           </option>
           <option value="level">Level</option>
-          <option value="descricao">Descrição</option>
+          <option value="detalhes">Descrição</option>
           <option value="servidor">Origem</option>
-        </select>
-        <input
+        </Select>
+        <Input
           type="text"
-          onChange={e => handleChangeBusca(e.target.value, "input")}
-        ></input>
-      </section>
+          value={texto}
+          onChange={e => setTexto(e.target.value)}
+          onKeyPress={e => handleKeyPress(e)}
+          placeholder="Digite o texto"
+        ></Input>
+      </SectionSelect>
       <section>
-        <button onClick={arquivar}>Arquivar</button>
-        <button onClick={apagar}>Apagar</button>
-        <input type="checkbox" onChange={alternaExibicaoArquivados} /> Mostrar
-        arquivados
+        <DivButton>
+          <Button onClick={arquivar}>Arquivar</Button>
+          <Button onClick={apagar}>Apagar</Button>
+        </DivButton>
+        <DivMostrarArquivados>
+          <input
+            name="checkArquivados"
+            type="checkbox"
+            onChange={alternaExibicaoArquivados}
+          />
+          <label htmlFor="checkArquivados">Mostrar arquivados</label>
+        </DivMostrarArquivados>
       </section>
       <ErrorTable />
     </div>

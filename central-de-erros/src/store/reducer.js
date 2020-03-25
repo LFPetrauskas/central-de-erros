@@ -12,7 +12,9 @@ const INITIAL_STATE = {
   selected: {},
   erros: [
     {
+      id: 1,
       servidor: "dev",
+      checked: true,
       ip: "127.0.0.1",
       data: "24/05/2019 10:15",
       titulo: "acceleration.Service.AddCandidate: <forbidden>",
@@ -25,7 +27,9 @@ const INITIAL_STATE = {
       arquivado: false
     },
     {
+      id: 2,
       servidor: "dev",
+      checked: false,
       ip: "127.0.0.1",
       data: "24/05/2019 10:15",
       titulo: "acceleration.Service.AddCandidate: <forbidden>",
@@ -38,7 +42,9 @@ const INITIAL_STATE = {
       arquivado: false
     },
     {
+      id: 3,
       servidor: "prd",
+      checked: false,
       ip: "127.0.0.1",
       data: "24/05/2019 10:15",
       titulo: "acceleration.Service.AddCandidate: <forbidden>",
@@ -51,7 +57,9 @@ const INITIAL_STATE = {
       arquivado: false
     },
     {
+      id: 4,
       servidor: "hml",
+      checked: false,
       ip: "127.0.0.1",
       data: "24/05/2019 10:15",
       titulo: "acceleration.Service.AddCandidate: <forbidden>",
@@ -94,34 +102,25 @@ function store(state = INITIAL_STATE, action) {
     case "ALTERNA_EXIBICAO_ARQUIVADOS":
       return { ...state, mostrarArquivados: !state.mostrarArquivados };
     case "DELETE_ITEMS":
-      const itensDeletar = Object.keys(state.selected);
-      let restantes = [...state.erros];
-      restantes = restantes.filter((erro, index) => {
-        let deveManter = true;
-        for (let i = 0; i < itensDeletar.length; i++) {
-          if (itensDeletar[i] === index.toString()) {
-            deveManter = false;
-            break;
-          }
-        }
-        return deveManter;
-      });
+      const restantes = [...state.erros].filter(erro => erro.checked === false);
       return { ...state, erros: [...restantes] };
     case "ARCHIVE_ITEMS":
-      const itensArquivar = Object.keys(state.selected);
-      let arquivados = [...state.erros];
-      arquivados = arquivados.filter((erro, index) => {
-        for (let i = 0; i < itensArquivar.length; i++) {
-          if (itensArquivar[i] === index.toString()) {
-            erro.arquivado = true;
-            break;
-          }
-        }
+      const arquivados = [...state.erros].map(erro => {
+        if (erro.checked === true && erro.arquivado === false)
+          erro.arquivado = true;
+        erro.checked = false;
         return erro;
       });
       return { ...state, erros: [...arquivados] };
-    case "SET_SELECTED":
-      return { ...state, selected: { ...action.payload } };
+    case "TOGGLE_CHECK":
+      const newErros = [...state.erros];
+      newErros.map(erro => {
+        if (erro.id === action.payload) {
+          erro.checked = !erro.checked;
+        }
+        return erro;
+      });
+      return { ...state, erros: [...newErros] };
     default:
       return state;
   }

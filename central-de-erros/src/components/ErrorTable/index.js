@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Table } from "./style";
 
 function ErrorTable() {
   const erros = useSelector(state => state.erros);
@@ -18,10 +19,21 @@ function ErrorTable() {
 
   React.useEffect(() => {
     let newErros = [...erros];
-    newErros = newErros.filter(erro => erro.arquivado === false || mostrarArquivados);
+
     if (filtro.trim() !== "" && texto.trim() !== "") {
-      newErros = newErros.filter(erro => erro[filtro].toUpperCase().search(texto.toUpperCase()) > 0 );
+      newErros = newErros.filter(
+        erro =>
+          erro[filtro].toUpperCase().includes(texto.toUpperCase()) === true
+      );
     }
+
+    if (texto.trim() === "") {
+      newErros = [...erros];
+    }
+
+    newErros = newErros.filter(
+      erro => erro.arquivado === false || mostrarArquivados
+    );
 
     if (servidorFiltro.trim() !== "")
       newErros = newErros.filter(erro => erro.servidor === servidorFiltro);
@@ -34,24 +46,25 @@ function ErrorTable() {
       });
 
     setListados(newErros);
-  }, [erros, propriedadeOrdem, texto, filtro, servidorFiltro, mostrarArquivados]);
+  }, [
+    erros,
+    propriedadeOrdem,
+    texto,
+    filtro,
+    servidorFiltro,
+    mostrarArquivados
+  ]);
 
   function redirect(erro) {
     history.push("/erro", { erro });
   }
 
-  function handleCheck(value, index) {
-    const source = {...selected};
-    if (value) {
-      source[index.toString()] = true;
-    } else {
-      delete source[index.toString()];
-    }
-    dispatch({type: "SET_SELECTED", payload: {...source}});
+  function handleCheck(id) {
+    dispatch({ type: "TOGGLE_CHECK", payload: id });
   }
 
   return (
-    <table>
+    <Table>
       <thead>
         <tr>
           <th></th>
@@ -62,22 +75,32 @@ function ErrorTable() {
       </thead>
       <tbody>
         {listados.map((erro, index) => (
-          <TableRow key={index} erro={erro} redirect={redirect} index={index} handleCheck={handleCheck} />
+          <TableRow
+            key={index}
+            erro={erro}
+            redirect={redirect}
+            index={index}
+            handleCheck={handleCheck}
+          />
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
 export default ErrorTable;
 
-function TableRow({ erro, redirect, index, handleCheck }) {
+function TableRow({ erro, redirect, handleCheck }) {
   return (
     <tr>
       <td>
-        <input type="checkbox" onChange={e => handleCheck(e.target.checked, index)}></input>
+        <input
+          type="checkbox"
+          checked={erro.checked}
+          onChange={e => handleCheck(erro.id)}
+        ></input>
       </td>
-      <td onClick={() => redirect(erro)}>{erro.level}</td>
+      <td onClick={() => redirect(erro)} className={erro.level}><span>{erro.level}</span></td>
       <td onClick={() => redirect(erro)}>{erro.detalhes}</td>
       <td onClick={() => redirect(erro)}>{erro.eventos}</td>
     </tr>

@@ -9,9 +9,7 @@ import {
   Fundo
 } from "./style";
 import { useHistory, useLocation } from "react-router";
-
-import imagelogo from "../../images/buglogo.png";
-import { LogoContainer } from "../login/styles";
+import NavBar from "../../components/navbar";
 
 
 function ErroDetails() {
@@ -29,6 +27,7 @@ function ErroDetails() {
 
   return (
     <Fundo>
+      <NavBar />
       <div
         style={{
           display: "flex",
@@ -38,9 +37,6 @@ function ErroDetails() {
         }}
       >
         <Button onClick={voltar}>Voltar</Button>
-        <LogoContainer>
-          <img src={imagelogo} alt="logotipo" />
-        </LogoContainer>
         <DivCard>
           <h1>
             Erro no <strong>{erro.ip}</strong> em <strong>{erro.data}</strong>
