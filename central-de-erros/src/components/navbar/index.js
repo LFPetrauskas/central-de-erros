@@ -30,7 +30,7 @@ function NavBar() {
   const usuarioEmail = useSelector(state => state.usuarioEmail);
   const usuarioHash = useSelector(state => state.usuarioHash);
 
-  if (usuarioLogado === 0) return <Redirect to="/" />;
+  // if (usuarioLogado === 0) return <Redirect to="/" />;
   return (
     <Container>
       <ImgDataUserContainer>

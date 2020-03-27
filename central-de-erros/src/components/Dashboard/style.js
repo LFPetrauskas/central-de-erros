@@ -5,14 +5,14 @@ export const Input = styled.input`
   padding: 1vw;
   min-width: 23vw;
   @media (max-width: 425px) {
-    width: 90vw;
+    width: 80vw;
   }
 `;
 
 export const Select = styled.select`
   box-sizing: border-box;
   padding: 1vw;
-  min-width: 23vw;
+  min-width: 20vw;
   @media (max-width: 425px) {
     width: 90vw;
   }
@@ -77,4 +77,16 @@ export const DivMostrarArquivados = styled.div`
   label {
     margin-left: 1vw;
   }
+`;
+
+export const SubmitButton = styled.button`
+  min-width: 4vw;
+  @media (max-width: 425px) {
+    width: 10vw;
+    /* border: 0px; */
+    /* outline: 0px; */
+  }
+`;
+export const FormSearch = styled.form`
+  display: flex;
 `;

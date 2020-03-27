@@ -2,7 +2,16 @@ import React from "react";
 import ErrorTable from "../ErrorTable";
 import { useDispatch } from "react-redux";
 
-import { Select, SectionSelect, Input, Button, DivButton, DivMostrarArquivados } from "./style";
+import {
+  Select,
+  SectionSelect,
+  Input,
+  Button,
+  DivButton,
+  DivMostrarArquivados,
+  FormSearch,
+  SubmitButton
+} from "./style";
 
 function Dashboard() {
   const [texto, setTexto] = React.useState("");
@@ -17,12 +26,12 @@ function Dashboard() {
     dispatch({ type: "ORDER_BY", payload: value });
   }
 
-  function handleKeyPress(event) {
-    if (event.key === "Enter")
-      dispatch({
-        type: "BUSCA_POR",
-        payload: { filtro, texto }
-      });
+  function submitForm(event) {
+    event.preventDefault();
+    dispatch({
+      type: "BUSCA_POR",
+      payload: { filtro, texto }
+    });
   }
 
   function alternaExibicaoArquivados() {
@@ -63,13 +72,18 @@ function Dashboard() {
           <option value="detalhes">Descrição</option>
           <option value="servidor">Origem</option>
         </Select>
-        <Input
-          type="text"
-          value={texto}
-          onChange={e => setTexto(e.target.value)}
-          onKeyPress={e => handleKeyPress(e)}
-          placeholder="Digite o texto"
-        ></Input>
+        <FormSearch onSubmit={submitForm}>
+          <Input
+            type="text"
+            value={texto}
+            onChange={e => setTexto(e.target.value)}
+            // onKeyPress={e => handleKeyPress(e)}
+            placeholder="Digite o texto"
+          ></Input>
+          <SubmitButton type="submit">
+            <i className="fas fa-search"></i>
+          </SubmitButton>
+        </FormSearch>
       </SectionSelect>
       <section>
         <DivButton>
