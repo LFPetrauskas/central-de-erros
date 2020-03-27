@@ -97,6 +97,9 @@ export const Table = styled.table`
       &:nth-child(odd) {
         background-color: #061e2d;
       }
+      td {
+        cursor: pointer;
+      }
     }
   }
 `;
