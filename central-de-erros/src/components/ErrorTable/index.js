@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Table } from "./style";
+import { Table, TableContainer } from "./style";
 
 function ErrorTable() {
   const erros = useSelector(state => state.erros);
@@ -64,27 +64,29 @@ function ErrorTable() {
   }
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Level</th>
-          <th>Log</th>
-          <th>Eventos</th>
-        </tr>
-      </thead>
-      <tbody>
-        {listados.map((erro, index) => (
-          <TableRow
-            key={index}
-            erro={erro}
-            redirect={redirect}
-            index={index}
-            handleCheck={handleCheck}
-          />
-        ))}
-      </tbody>
-    </Table>
+    <TableContainer>
+      <Table>
+        <thead>
+          <tr>
+            <th className="select"></th>
+            <th className="level">Level</th>
+            <th className="detalhes">Log</th>
+            <th className="eventos">Eventos</th>
+          </tr>
+        </thead>
+        <tbody>
+          {listados.map((erro, index) => (
+            <TableRow
+              key={index}
+              erro={erro}
+              redirect={redirect}
+              index={index}
+              handleCheck={handleCheck}
+            />
+          ))}
+        </tbody>
+      </Table>
+    </TableContainer>
   );
 }
 
@@ -100,9 +102,13 @@ function TableRow({ erro, redirect, handleCheck }) {
           onChange={e => handleCheck(erro.id)}
         ></input>
       </td>
-      <td onClick={() => redirect(erro)} className={erro.level}><span>{erro.level}</span></td>
-      <td onClick={() => redirect(erro)}>{erro.detalhes}</td>
-      <td onClick={() => redirect(erro)}>{erro.eventos}</td>
+      <td onClick={() => redirect(erro)} className={`level ${erro.level}`}>
+        <span>{erro.level}</span>
+      </td>
+      <td onClick={() => redirect(erro)} className="detalhes">
+        {erro.detalhes}
+      </td>
+      <td onClick={() => redirect(erro)} className="eventos">{erro.eventos}</td>
     </tr>
   );
 }

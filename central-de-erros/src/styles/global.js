@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
    @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
    
-   @media(max-width: 400px) {
+   @media(max-width: 425px) {
 
      body {
       /* background: #353940; */
@@ -18,6 +18,7 @@ export default createGlobalStyle`
        text-rendering: optimizeLegibility !important;
        -webkit-font-smoothing: antialiased !important;
        width: 100%;
+       overflow-x: none;
      }  
    }
 
